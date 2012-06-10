@@ -8,7 +8,8 @@ Ext.define('SyncLists.model.ListItem', {
 					{name: 'checked', type: 'boolean', defaultValue:false}
 				],
 			associations: [{ type: 'belongsTo', model: 'SyncedList' }],
-			identifier : 'uuid',
+			//identifier : 'uuid',
+			identifier: 'sequential',
 
 			proxy: {
 				type: 'localstorage',

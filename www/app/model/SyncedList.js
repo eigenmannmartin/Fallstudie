@@ -6,7 +6,8 @@ Ext.define('SyncLists.model.SyncedList', {
 					{name: 'name', type: 'string'},
 					//{name: 'id', type: 'string'}
 				],
-			identifier : 'uuid',
+			//identifier : 'uuid',
+			identifier: 'sequential',
 			proxy: {
 				type: 'localstorage',
 				id: 'SyncedLists'
