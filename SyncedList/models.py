@@ -15,6 +15,7 @@ from tastypie.throttle import CacheDBThrottle
 
 
 class ListEntry(models.Model):
+	""" doc string """
 	entry_description = models.CharField(max_length=200)
 	entry_content = models.CharField(max_length=2000)
 	entry_state = models.BooleanField()
