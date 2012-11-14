@@ -3,12 +3,12 @@ from SyncedList.models import *
 from tastypie.api import Api
 
 
-
+# url is: /api/v1/
 v1_api = Api(api_name='v1')
 v1_api.register(UserResource())
 v1_api.register(EntryResource())
 
 
 urlpatterns = patterns('',
-    url(r'^sl/', include(v1_api.urls)),
+    url(r'^', include(v1_api.urls)),
 )
