@@ -1,9 +1,14 @@
 from django.conf.urls import patterns, include, url
-from SyncedList.models import EntryResource
+from SyncedList.models import *
+from tastypie.api import Api
 
 
-entry_resource = EntryResource()
+
+v1_api = Api(api_name='v1')
+v1_api.register(UserResource())
+v1_api.register(EntryResource())
+
 
 urlpatterns = patterns('',
-    url(r'^entry/$', include(entry_resource.urls)),
+    url(r'^sl/', include(v1_api.urls)),
 )
