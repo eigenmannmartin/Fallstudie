@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'tastypie',
     'SyncedList',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
