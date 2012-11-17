@@ -1,19 +1,9 @@
 # general
 from django.db import models
-
-# Auth
-from tastypie.authentication import BasicAuthentication
-from tastypie.authorization import DjangoAuthorization
 from django.contrib.auth.models import User
-# API
-from tastypie.resources import ModelResource
-from tastypie import fields
-from tastypie.cache import SimpleCache
-from tastypie.resources import ModelResource
-from tastypie.throttle import CacheDBThrottle
 # Var
 from datetime import datetime
-from django.db.models import Q
+#from django.db.models import Q
 
 
 class ListEntry(models.Model):
@@ -56,45 +46,4 @@ class ListEntrySync(models.Model):
 
 
 
-
-
-
-# not used anymore
-class UserResource(ModelResource):
-	class Meta:
-		queryset = User.objects.all()
-		resource_name = 'user'
-		fields = ['username', 'first_name', 'last_name']
-		allowed_methods = ['get']
-
-
-	
-class EntryResource(ModelResource):
-	def determine_format(self, request):
-		return "application/json" 
-
-	def apply_authorization_limits(self, request, object_list):
-		return object_list.filter(list_read=request.user) | object_list.filter(list_write=request.user) | object_list.filter(list_owner=request.user)
-
-	class Meta:
-		queryset = ListEntry.objects.all()
-		authentication = BasicAuthentication()
-		authorization = DjangoAuthorization()
-		cache = SimpleCache()
-		resource_name = 'Entry'
-		
-class ListResource(ModelResource):
-	def determine_format(self, request):
-		return "application/json" 
-	
-	def apply_authorization_limits(self, request, object_list):
-		return object_list.filter(list_read=request.user) | object_list.filter(list_write=request.user) | object_list.filter(list_owner=request.user)
-
-	class Meta:
-		queryset = List.objects.all().distinct()
-		authentication = BasicAuthentication()
-		authorization = DjangoAuthorization()
-		cache = SimpleCache()
-		resource_name = 'List'
-				
     

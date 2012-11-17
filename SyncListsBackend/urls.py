@@ -18,8 +18,8 @@ urlpatterns = patterns('',
 	# Uncomment the next line to enable the admin:
 	url(r'^admin/', include(admin.site.urls)),
 
+	url(r'^dev/', include('SyncedList.urls_dev')),
 	url(r'^api/', include('SyncedList.urls_api')),
 	url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': False}),
-
 	url(r'^$', redirect_to, {'url': '/static/index.html'}),
 )

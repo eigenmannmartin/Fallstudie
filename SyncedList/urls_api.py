@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from SyncedList.models import *
+from SyncedList.resources import *
 from tastypie.api import Api
 
 
