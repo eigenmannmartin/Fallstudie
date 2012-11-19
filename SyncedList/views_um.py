@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 
 
 
-def dev_login(request):
+def um_login(request):
 
 	user = authenticate(username='admin', password='admin')
 	if user is not None:
@@ -20,13 +20,13 @@ def dev_login(request):
 
 	return HttpResponse(out)
 
-def dev_user(request):
+def um_user(request):
 	if request.user.is_authenticated():
 		out = request.user.username
 	else:
 		out = "sorry, you are not logged in"
 	return HttpResponse(out)
 
-def dev_logout(request):
+def um_logout(request):
 	logout(request)
 	return HttpResponse("Successfully logged out")
