@@ -97,5 +97,4 @@ class ListResource(ModelResource):
 		authorization = DjangoAuthorization()
 		cache = SimpleCache()
 		resource_name = 'List'
-				
     
