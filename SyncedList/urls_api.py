@@ -12,6 +12,7 @@ v1_api.register(ListResource())
 
 
 urlpatterns = patterns('',
+	url(r'^SL/$', redirect_to, {'url': '/static/api.html'}),
 	url(r'^login/$', 'SyncedList.views_um.um_login'),
 	url(r'^login/user/$', 'SyncedList.views_um.um_user'),
 	url(r'^logout/$', 'SyncedList.views_um.um_logout'),
