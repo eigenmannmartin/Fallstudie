@@ -1,0 +1,45 @@
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+
+<h1>login</h1>
+<div id="login">
+	<form name="login" action="http://localhost:8000/api/login/user" id="loginform">
+		{% csrf_token %}
+		Username: <input type='text' name='username' /><br>
+		Password: <input type='password' name='password' />
+
+		<input type="submit" name="submit" class="button" id="submit_btn" value="Login" /> 
+	</form>
+</div>
+
+ <!-- the result of the search will be rendered inside this div -->
+<div id="result"></div>
+
+<script>
+  /* attach a submit handler to the form */
+  $("#loginform").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault(); 
+        
+    /* get some values from elements on the page: */
+    var $form = $( this ),
+        term = $form.find( 'input[username="username"]' ).val(),
+        url = $form.attr( 'action' );
+
+    /* Send the data using post and put the results in a div */
+    $.post( url, { s: term },
+      function( data ) {
+          $( "#result" ).empty().append( data );
+      }
+    );
+  });
+</script>
+
+
+
+</body>
+</html>
