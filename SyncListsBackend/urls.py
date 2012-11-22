@@ -1,3 +1,11 @@
+#
+# since:		version 0.1
+# creator:		Martin Eigenmann
+# 
+# details:		general URL handling 
+#
+
+
 from django.conf.urls import patterns, include, url
 from django.views.generic.simple import redirect_to
 import settings

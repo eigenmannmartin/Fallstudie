@@ -1,4 +1,11 @@
-# Create your views here.
+#
+# since:		version 0.1
+# creator:		Martin Eigenmann
+# 
+# details:		Login handling 
+#
+
+
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout

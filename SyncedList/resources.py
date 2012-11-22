@@ -1,3 +1,11 @@
+#
+# since:		version 0.1
+# creator:		Martin Eigenmann
+# 
+# details:		api handling - tastypie is used 
+#
+
+
 #API
 from tastypie.resources import ModelResource
 from tastypie import fields, api
@@ -12,6 +20,7 @@ from SyncedList.models import *
 
 
 
+# used to authenticate write and read acces based on the groups
 class EimAuthentication(Authentication):
     def is_authenticated(self, request, **kwargs):
         if request.user.is_authenticated():
@@ -25,20 +34,22 @@ class EimAuthentication(Authentication):
 
 
 
-# not used anymore
-class UserResource(ModelResource):
-	class Meta:
-		queryset = User.objects.all()
-		resource_name = 'user'
-		fields = ['username', 'first_name', 'last_name']
-		allowed_methods = ['get']
+# not used anymore - remark to delete
+#class UserResource(ModelResource):
+#	class Meta:
+#		queryset = User.objects.all()
+#		resource_name = 'user'
+#		fields = ['username', 'first_name', 'last_name']
+#		allowed_methods = ['get']
 
 
 	
 class EntryResource(ModelResource):
+	# just to avoid format-errors
 	def determine_format(self, request):
 		return "application/json" 
 
+	# select only the needed entries
 	def apply_authorization_limits(self, request, object_list):
 		return object_list.filter(entry_list__list_read=request.user) | object_list.filter(entry_list__list_write=request.user) |object_list.filter(entry_list__list_owner=request.user) 
 
@@ -54,15 +65,19 @@ class EntryResource(ModelResource):
 
 		
 class ListResource(ModelResource):
+	# just to avoid format-errors
 	def determine_format(self, request):
 		return "application/json" 
 	
+	# select only the needed entries
 	def apply_authorization_limits(self, request, object_list):
 		return object_list.filter(list_read=request.user) | object_list.filter(list_write=request.user) | object_list.filter(list_owner=request.user)
 
-	def is_autenticated(self,request):
-		return request.is_autenticated()
+	# not used anymore - remark to delete
+	#def is_autenticated(self,request):
+	#	return request.is_autenticated()
 
+	# list all entries that belongs to the list 
 	list_entry = fields.ToManyField(EntryResource, 'list_entry')
 	def prepend_urls(self):
 		return [
@@ -70,6 +85,7 @@ class ListResource(ModelResource):
  		]
 
  	def get_entry(self, request, **kwargs):
+ 		# try to find all entries
 		try:
 			obj = self.cached_obj_get(request=request, **self.remove_api_resource_names(kwargs))
 		except ObjectDoesNotExist:
@@ -86,6 +102,7 @@ class ListResource(ModelResource):
 		#authorization = DjangoAuthorization()
 		cache = SimpleCache()
 		resource_name = 'List'
+		# limit to 2000 - override default
 		limit = 2000
 				
 
