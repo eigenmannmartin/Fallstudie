@@ -21,6 +21,25 @@ Ext.define('SyncLists.controller.ListsVC', {
 	launch: function(app) {
 		//this.offlineStore.load();
 
+
+	Ext.Ajax.request({
+ 		url: 'http://localhost:8000/api/login/',
+ 		params: {
+   			username: 'koki',
+   			password: '1234qwer.'  
+ 		},
+ 		success: function(response, opts) {
+   		// decode String response into JSON.
+   		var obj = Ext.decode(response.responseText);
+   		// examine response object, then load/create some content.
+ 		},
+ 		failure: function(response, opts) {
+   			console.log('server-side failure with status code ' + response.status);
+ 		}
+	});
+
+
+
 		this.itemsVC = this.getApplication().getController('ListItemsVC');
 	},
 	sync: function() {

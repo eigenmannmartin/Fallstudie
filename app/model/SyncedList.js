@@ -3,14 +3,19 @@ Ext.define('SyncLists.model.SyncedList', {
 
     config: {
 			fields: [
-					{name: 'name', type: 'string'},
+					{name: 'list_name', type: 'string'},
 					//{name: 'id', type: 'string'}
 				],
 			//identifier : 'uuid',
 			identifier: 'sequential',
 			proxy: {
-				type: 'localstorage',
-				id: 'SyncedLists'
+				type: 'rest',
+				url : 'http://localhost:8000/api/SL/List',
+				//headers: {'Cookie': 'sessionid=bbaa69fc7a93377e2f06095467d3be27'},
+				reader: {
+					type: 'json',
+					root: 'objects'
+				}
 			}
     }
 });
