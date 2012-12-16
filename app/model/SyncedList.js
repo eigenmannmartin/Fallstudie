@@ -14,7 +14,7 @@ Ext.define('SyncLists.model.SyncedList', {
 				//headers: {'Cookie': 'sessionid=bbaa69fc7a93377e2f06095467d3be27'},
 				reader: {
 					type: 'json',
-					root: 'objects'
+					rootProperty: 'objects'
 				}
 			}
     }
