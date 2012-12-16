@@ -2,16 +2,12 @@ Ext.define('SyncLists.model.SyncedList', {
     extend: 'Ext.data.Model',
 
     config: {
-			fields: [
-					{name: 'list_name', type: 'string'},
-					//{name: 'id', type: 'string'}
-				],
+			fields: ['list_name'],
 			//identifier : 'uuid',
 			identifier: 'sequential',
 			proxy: {
 				type: 'rest',
-				url : 'http://localhost:8000/api/SL/List',
-				//headers: {'Cookie': 'sessionid=bbaa69fc7a93377e2f06095467d3be27'},
+				url : '/api/SL/List/',
 				reader: {
 					type: 'json',
 					rootProperty: 'objects'

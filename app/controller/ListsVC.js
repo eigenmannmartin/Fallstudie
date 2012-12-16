@@ -23,7 +23,8 @@ Ext.define('SyncLists.controller.ListsVC', {
 
 
 	Ext.Ajax.request({
- 		url: 'http://localhost:8000/api/login/',
+ 		url: '/api/login/',
+ 		method: 'GET',
  		params: {
    			username: 'koki',
    			password: '1234qwer.'  

@@ -4,13 +4,13 @@ Ext.define("SyncLists.view.ListsView", {
 	requires: ['Ext.dataview.List'],
 
 	config: {
-		title:'Lists',
+		title:'Lists DEV',
 		layout:'fit',
 		items: [
 			{
 				xtype:'list',
 				scrollable: true,
-				itemTpl: '{name}',
+				itemTpl: '{list_name}',
 				store: Ext.getStore('SyncedList-offline'),
 				listeners: {
 				itemtap: function(dv, ix, item, e) {
