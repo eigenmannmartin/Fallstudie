@@ -4,7 +4,12 @@
 # 
 # details:		Login handling 
 #
-
+#
+# since:		version 0.1
+# creator:		Martin Eigenmann
+# 
+# details:		api - userlogin
+#
 
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -15,6 +20,9 @@ from django.utils import simplejson
 
 
 def um_login(request):
+	# return codes:   0:succes
+	#				<>0:fail - look at message
+	#
 	response_data = {
 		"message" : "",
 		"result" : "",
